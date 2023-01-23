@@ -52,23 +52,48 @@ class Resources:
 
 def main():
 
-    remainder = int(sys.argv[1])
-    containers = {}
-    resources = Resources()
+    if len(sys.argv) == 4:
+        remainder_mats = int(sys.argv[2]) - int(sys.argv[1])
+        containers = {}
+        resources = Resources()
 
-    no_container = 0
-
-    for amount in resources.mats[sys.argv[2]]:
-        containers[amount] = 0
-        while remainder - amount >=0:
-            containers[amount] += 1
-            remainder -= amount
+        for amount in resources.mats[sys.argv[3]]:
+            containers[amount] = 0
+            while remainder_mats - amount >=0:
+                containers[amount] += 1
+                remainder_mats -= amount
+        
+        print("Remaining Materials: " + str(remainder_mats))
+        print(containers)
     
-    print(remainder)
-    print(containers)
+    elif len(sys.argv) == 3:
+        remainder_mats = int(sys.argv[1])
+        containers = {}
+        resources = Resources()
+
+        for amount in resources.mats[sys.argv[2]]:
+            containers[amount] = 0
+            while remainder_mats - amount >=0:
+                containers[amount] += 1
+                remainder_mats -= amount
+        
+        print("Remaining Materials: " + str(remainder_mats))
+        print(containers)
+    else:
+        print("Error: Not enough arguments given.")
 
     return
 
+def loop_resources_and_count_containers(material_string):
+    nonlocal containers
+    nonlocal resources
+    nonlocal remainder_mats
+
+    for amount in resources.mats[material_string]:
+            containers[amount] = 0
+            while remainder_mats - amount >=0:
+                containers[amount] += 1
+                remainder_mats -= amount
 
 if __name__ == "__main__":
     main()
