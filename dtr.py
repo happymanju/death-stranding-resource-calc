@@ -49,10 +49,6 @@ class Resources:
         ]
         }
 
-#identify correct material name in dictionary
-#loop through each amount
-#repeat: while able, subtract amount from n and increment container count
-#return container count dict
 
 def main():
 
